@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
     private bool isInvulnerable = false;
 
     //Fonction principale gerant la prise de degat
-    public void Hit(int nb)
+    public void Hit()
     {
         StartCoroutine(IsEnumeratorSwitchState());
-        lives -= nb;
+        lives -= 1;
         DisplayDamageUI();
         // if(lives <= 0)
         // {
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && !isInvulnerable)
         {
-            Hit(1);
+            Hit();
         }
     }
 
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Assure l'immortalité temporaire du joueur apres un coup
+    //Assure l'immortalitï¿½ temporaire du joueur apres un coup
     private IEnumerator IsEnumeratorSwitchState()
     {
         isInvulnerable = true;
