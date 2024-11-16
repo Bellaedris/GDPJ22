@@ -152,7 +152,6 @@ public class EnemyAI : MonoBehaviour
         if (RandomPoint(centrePoint.position, range, out point))
         {
             coroutineDebug = false;
-            Debug.Log("yes");
             yield return new WaitForSeconds(time);
             Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
             agent.SetDestination(point);
