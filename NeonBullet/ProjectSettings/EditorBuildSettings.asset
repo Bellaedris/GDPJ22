@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WelcomeScene.unity
     guid: 9b03ff7ebac3b9649b8dd88adde67ecd
   - enabled: 1
-    path: Assets/Scenes/EvanScene.unity
+    path: Assets/Scenes/AnimationScene.unity
     guid: 8b3df14f36e398d44a0036ba3e54138a
   - enabled: 1
     path: Assets/Scenes/DeadScene.unity
