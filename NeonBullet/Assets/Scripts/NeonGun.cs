@@ -91,6 +91,8 @@ public class NeonGun : MonoBehaviour
 
     private void Shoot()
     {
+        _audioManager.PlayLanceGrenade();
+
         if (_isBarrelRolling || _isInspectingBarrel)
             return;
 
