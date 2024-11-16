@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum BulletColor
@@ -31,6 +32,7 @@ public class NeonGun : MonoBehaviour
 
     public GameObject hand;
     public GameObject reloadUI;
+    public ParticleSystem particlesOnHit;
     
     private BulletColor[] _barrel;
     private MeshRenderer[] _bullets;
@@ -87,20 +89,16 @@ public class NeonGun : MonoBehaviour
     private void Shoot()
     {
         if (_isBarrelRolling || _isInspectingBarrel)
-        {
-            //Si pas en cours d'animation
             return;
-        }
 
         if (_barrel[_currentBarrel] == BulletColor.Black)
         {
-            //On se tire dessus (balle noir)
-            _player.Hit(3);
+            _player.Hit();
         }
         
         if (_barrel[_currentBarrel] == BulletColor.Empty)
         {
-            //bariller vide
+            Debug.Log("CLIC! Empty barrel");
             return;
         }
         //shoots the thing
@@ -109,7 +107,9 @@ public class NeonGun : MonoBehaviour
         if (Physics.Raycast(transform.position, cameraDirection.transform.forward, out hit, Mathf.Infinity, enemiesLayer))
         {
             //Debug.Log("HIT");
-            hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
+            Instantiate(particlesOnHit, hit.point, Quaternion.LookRotation(hit.normal));
+            if(hit.collider.CompareTag("Enemy"))
+                hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
         }
 
         //empty the barrel slot
