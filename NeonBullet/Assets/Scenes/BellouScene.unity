@@ -1130,7 +1130,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3e50bee81f68709449c0e67a78bf9cd1, type: 2}
   - {fileID: 2100000, guid: a31ca1c64e3cfc7429f76363834c2a6f, type: 2}
   blackProbability: 1
-  reloadUI: {fileID: 0}
+  reloadUI: {fileID: 1461075852}
   _barrel: 040000000400000004000000040000000400000004000000
   _currentBarrel: 0
 --- !u!4 &1781141539
