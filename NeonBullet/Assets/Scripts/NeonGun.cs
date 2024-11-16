@@ -18,7 +18,6 @@ public class NeonGun : MonoBehaviour
     [Header("Gun settings")] 
     [Tooltip("When hitting an enemy, they will be paralyzed for said seconds")]
     public float gunParalyzeTime = 1f;
-
     public LayerMask enemiesLayer;
     
     [Header("Barrel settings")]
@@ -26,6 +25,10 @@ public class NeonGun : MonoBehaviour
     public Material[] bulletMaterials;
     [Range(0, 1)] 
     public float blackProbability = 1f;
+
+    private Animator _checkAnimator;
+
+    public GameObject hand;
     public GameObject reloadUI;
     
     private BulletColor[] _barrel;
@@ -37,6 +40,8 @@ public class NeonGun : MonoBehaviour
     private float _rotationOffset;
 
     private bool _isBarrelRolling = false;
+    private bool _isInspectingBarrel = true;
+    private bool _isInspectionRotation = false;
     private bool _canReload = true;
 
     private PlayerController _player;
@@ -45,6 +50,7 @@ public class NeonGun : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerController>();
+        _checkAnimator = GetComponent<Animator>();
         
         _bullets = new MeshRenderer[barrelSize];
         for(int i = 0; i < transform.childCount; i++)
@@ -69,11 +75,13 @@ public class NeonGun : MonoBehaviour
             BarrelRoll(-1);
         if (Input.GetKeyDown(KeyCode.E))
             BarrelRoll(1);
+        if(Input.GetKeyDown(KeyCode.F))
+            Inspectbarrel();
     }
 
     private void Shoot()
     {
-        if (_isBarrelRolling)
+        if (_isBarrelRolling || _isInspectingBarrel)
             return;
 
         if (_barrel[_currentBarrel] == BulletColor.Black)
@@ -89,10 +97,10 @@ public class NeonGun : MonoBehaviour
         //shoots the thing
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.position + _player.transform.forward * 1000f, Color.red, 10f);
-        if (Physics.Raycast(transform.position, _player.transform.forward, out hit, enemiesLayer))
+        if (Physics.Raycast(transform.position, _player.transform.forward, out hit, Mathf.Infinity, enemiesLayer))
         {
-            hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
             Debug.Log("HIT");
+            hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
         }
 
         //empty the barrel slot
@@ -178,13 +186,36 @@ public class NeonGun : MonoBehaviour
             ? (_currentBarrel + direction + barrelSize) % barrelSize 
             : (_currentBarrel + direction) % barrelSize;
 
-        StartCoroutine(SmoothRotate(Vector3.up, -direction * _rotationOffset, 0.5f));
+        StartCoroutine(SmoothRotate(Vector3.right, -direction * _rotationOffset, 0.5f));
+    }
+    
+    /// <summary>
+    /// Roll the barrel left if direction is negative, right otherwise.
+    /// </summary>
+    /// <param name="direction">the direction of the roll</param>
+    private void Inspectbarrel()
+    {
+        if (_isInspectionRotation)
+            return;
+
+        if (_isInspectingBarrel)
+        {
+            _isInspectingBarrel = false;
+            _checkAnimator.SetTrigger("BarrelCheck");
+        }
+        else
+        {
+            _isInspectingBarrel = true;
+            _checkAnimator.SetTrigger("BarrelDefault");
+        }
+
+        StartCoroutine(RotateBarrelTimer(.5f));
     }
 
     private IEnumerator SmoothRotate(Vector3 axis, float angle, float duration)
     {
-        Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = transform.rotation * Quaternion.AngleAxis(angle, axis);
+        Quaternion startRotation = transform.localRotation;
+        Quaternion endRotation = transform.localRotation * Quaternion.AngleAxis(angle, axis);
         _isBarrelRolling = true;
 
         float elapsedTime = 0f;
@@ -192,11 +223,18 @@ public class NeonGun : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsedTime / duration);
+            transform.localRotation = Quaternion.Slerp(startRotation, endRotation, elapsedTime / duration);
             yield return null;
         }
         
-        transform.rotation = endRotation;
+        transform.localRotation = endRotation;
         _isBarrelRolling = false;
+    }
+    
+    private IEnumerator RotateBarrelTimer(float duration)
+    {
+        _isInspectionRotation = true;
+        yield return new WaitForSeconds(duration);
+        _isInspectionRotation = false;
     }
 }
