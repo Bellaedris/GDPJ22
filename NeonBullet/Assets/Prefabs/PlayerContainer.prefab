@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f4fd21db00e1742ad534d41c12d1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 3039994225509264760}
   lives: 3
   HUD: {fileID: 3774774775257424307}
   damagedHUD:
@@ -2073,7 +2073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ecfc2ffd070374eb2ece36d3a24b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 3039994225509264760}
   gunParalyzeTime: 5
   enemiesLayer:
     serializedVersion: 2
@@ -2090,6 +2090,7 @@ MonoBehaviour:
   blackProbability: 1
   hand: {fileID: 8947919202615679142}
   reloadUI: {fileID: 3501581280503655794}
+  particlesOnHit: {fileID: 0}
 --- !u!95 &4864343111224246150
 Animator:
   serializedVersion: 7
