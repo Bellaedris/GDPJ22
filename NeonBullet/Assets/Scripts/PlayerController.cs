@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     //Change le hud affichage des degats apres la prise d'un coup
     private void DisplayDamageUI()
     {
+        HUD.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
         if (lives == 2)
         {
             HUD.GetComponent<Image>().sprite = damagedHUD[0];
