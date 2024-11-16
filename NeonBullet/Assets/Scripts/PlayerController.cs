@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
     private bool isInvulnerable = false;
 
     //Fonction principale gerant la prise de degat
-    public void Hit()
+    public void Hit(int nb)
     {
         StartCoroutine(IsEnumeratorSwitchState());
-        lives--;
+        lives -= nb;
         DisplayDamageUI();
         // if(lives <= 0)
         // {
@@ -24,12 +24,17 @@ public class PlayerController : MonoBehaviour
         // }
     }
 
+    public void win()
+    {
+        //GameManager.Instance.Win();
+    }
+
     //Declenche la prise de degat par collision
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !isInvulnerable)
         {
-            Hit();
+            Hit(1);
         }
     }
 
@@ -44,7 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             HUD.GetComponent<Image>().sprite = damagedHUD[1];
         }
-        else if (lives == 0)
+        else if (lives <= 0)
         {
             HUD.GetComponent<Image>().sprite = damagedHUD[2];
         }

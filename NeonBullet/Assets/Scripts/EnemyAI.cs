@@ -30,20 +30,20 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (!_canMove)
-            return;
-
-        if (enemyDeplacement == DeplacementBehavior.RandomBehavior)
+        if (_canMove)
         {
-            randomDeplacement();  //Deplacement aleatoire sur NavMesh
-        }
-        else if (enemyDeplacement == DeplacementBehavior.ChasingBehavior)
-        {
-            goTowardPlayer();     //Deplacement chase joueur
-        }
-        else if (enemyDeplacement == DeplacementBehavior.ZigZagBehavior)
-        {
-            zigZagDeplacement();  //Deplacement zigZag vers joueur
+            if (enemyDeplacement == DeplacementBehavior.RandomBehavior)
+            {
+                randomDeplacement();  //Deplacement aleatoire sur NavMesh
+            }
+            else if (enemyDeplacement == DeplacementBehavior.ChasingBehavior)
+            {
+                goTowardPlayer();     //Deplacement chase joueur
+            }
+            else if (enemyDeplacement == DeplacementBehavior.ZigZagBehavior)
+            {
+                zigZagDeplacement();  //Deplacement zigZag vers joueur
+            }
         }
         animator.SetFloat("velocity", agent.velocity.magnitude);
     }
@@ -75,7 +75,6 @@ public class EnemyAI : MonoBehaviour
                 return;
             }
         }
-
         agent.SetDestination(waypoints[currentWaypointIndex]);
     }
 
@@ -164,7 +163,10 @@ public class EnemyAI : MonoBehaviour
     public void Paralyze(BulletColor bulletColor, float duration)
     {
         if (bulletColor == color)
+        {
+            Debug.Log("Match");
             StartCoroutine(StopMovementTimer(duration));
+        }
         // else
         // die??? + gameOver
     }
@@ -177,6 +179,9 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator StopMovementTimer(float timer)
     {
         _canMove = false;
+        waypoints.Clear();
+        agent.SetDestination(agent.transform.position);
+        agent.velocity = Vector3.zero;
         yield return new WaitForSeconds(timer);
         _canMove = true;
     }

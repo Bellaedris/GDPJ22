@@ -17,8 +17,9 @@ public class NeonGun : MonoBehaviour
 {
     [Header("Gun settings")] 
     [Tooltip("When hitting an enemy, they will be paralyzed for said seconds")]
-    public float gunParalyzeTime = 1f;
+    public float gunParalyzeTime = 5f;  //Paralyse the enemies for 5 seconds
     public LayerMask enemiesLayer;
+    public GameObject cameraDirection;
     
     [Header("Barrel settings")]
     public int barrelSize;
@@ -46,7 +47,6 @@ public class NeonGun : MonoBehaviour
 
     private PlayerController _player;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerController>();
@@ -64,7 +64,6 @@ public class NeonGun : MonoBehaviour
         Reload();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -77,29 +76,39 @@ public class NeonGun : MonoBehaviour
             BarrelRoll(1);
         if(Input.GetKeyDown(KeyCode.F))
             Inspectbarrel();
+
+        if (_numberOfBlack == 6)
+        {
+            //Win
+            //_player.....
+        }
     }
 
     private void Shoot()
     {
         if (_isBarrelRolling || _isInspectingBarrel)
+        {
+            //Si pas en cours d'animation
             return;
+        }
 
         if (_barrel[_currentBarrel] == BulletColor.Black)
         {
-            _player.Hit();
+            //On se tire dessus (balle noir)
+            _player.Hit(3);
         }
         
         if (_barrel[_currentBarrel] == BulletColor.Empty)
         {
-            Debug.Log("CLIC! Empty barrel");
+            //bariller vide
             return;
         }
         //shoots the thing
         RaycastHit hit;
-        Debug.DrawRay(transform.position, transform.position + _player.transform.forward * 1000f, Color.red, 10f);
-        if (Physics.Raycast(transform.position, _player.transform.forward, out hit, Mathf.Infinity, enemiesLayer))
+        Debug.DrawRay(transform.position, transform.position + cameraDirection.transform.forward * 1000f, Color.red, 10f);
+        if (Physics.Raycast(transform.position, cameraDirection.transform.forward, out hit, Mathf.Infinity, enemiesLayer))
         {
-            Debug.Log("HIT");
+            //Debug.Log("HIT");
             hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
         }
 
