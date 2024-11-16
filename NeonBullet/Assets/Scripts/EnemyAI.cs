@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     public Transform centrePoint;   //Center of area where the enemy move in (or agent transform if don't care)
     public DeplacementBehavior enemyDeplacement;
     private Animator animator;
-    public enum DeplacementBehavior {RandomBehavior, ChasingBehavior, ZigZagBehavior}
+    public enum DeplacementBehavior {RandomBehavior, ChasingBehavior, ZigZagBehavior, None}
     
     private NavMeshAgent agent;
     private List<Vector3> waypoints;
