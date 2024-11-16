@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
@@ -5,15 +6,19 @@ using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
+    public BulletColor color;
+    
     public GameObject player;       //Mettre le GameObject du joueur ici
     public float range;             //Max deplacement distance
     public Transform centrePoint;   //Center of area where the enemy move in (or agent transform if don't care)
     public DeplacementBehavior enemyDeplacement;
     public enum DeplacementBehavior {RandomBehavior, ChasingBehavior, ZigZagBehavior}
+    
     private NavMeshAgent agent;
     private List<Vector3> waypoints;
     private int currentWaypointIndex = 0;
-
+    private bool _canMove = true;
+    
     void Start()
     {
         waypoints = new List<Vector3>();
@@ -22,6 +27,9 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        if (!_canMove)
+            return;
+        
         if (enemyDeplacement == DeplacementBehavior.RandomBehavior)
         {
             randomDeplacement();  //Deplacement aleatoire sur NavMesh
@@ -136,5 +144,25 @@ public class EnemyAI : MonoBehaviour
 
         result = Vector3.zero;
         return false;
+    }
+
+    public void Paralyze(BulletColor bulletColor, float duration)
+    {
+        if (bulletColor == color)
+            StartCoroutine(StopMovementTimer(duration));
+        // else
+        // die??? + gameOver
+    }
+
+    /// <summary>
+    /// Stops player movement for a parametrized amount of time
+    /// </summary>
+    /// <param name="timer">Amount of time the AI should stop moving</param>
+    /// <returns></returns>
+    private IEnumerator StopMovementTimer(float timer)
+    {
+        _canMove = false;
+        yield return new WaitForSeconds(timer);
+        _canMove = true;
     }
 }
