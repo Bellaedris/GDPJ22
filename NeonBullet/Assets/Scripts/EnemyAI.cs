@@ -12,15 +12,18 @@ public class EnemyAI : MonoBehaviour
     public float range;             //Max deplacement distance
     public Transform centrePoint;   //Center of area where the enemy move in (or agent transform if don't care)
     public DeplacementBehavior enemyDeplacement;
+    private Animator animator;
     public enum DeplacementBehavior {RandomBehavior, ChasingBehavior, ZigZagBehavior}
     
     private NavMeshAgent agent;
     private List<Vector3> waypoints;
     private int currentWaypointIndex = 0;
     private bool _canMove = true;
-    
+    private bool coroutineDebug = true;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
         waypoints = new List<Vector3>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -29,7 +32,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (!_canMove)
             return;
-        
+
         if (enemyDeplacement == DeplacementBehavior.RandomBehavior)
         {
             randomDeplacement();  //Deplacement aleatoire sur NavMesh
@@ -42,11 +45,12 @@ public class EnemyAI : MonoBehaviour
         {
             zigZagDeplacement();  //Deplacement zigZag vers joueur
         }
+        animator.SetFloat("velocity", agent.velocity.magnitude);
     }
 
     void goTowardPlayer()
     {
-        agent.destination = player.transform.position;
+        agent.SetDestination(player.transform.position);
     }
 
     void zigZagDeplacement()
@@ -115,15 +119,9 @@ public class EnemyAI : MonoBehaviour
     void randomDeplacement()
     {
         //Si on a pas parcouru toute notre distance
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance && coroutineDebug)
         {
-            //On calcul un nouveau point
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point))
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
-            }
+            StartCoroutine(randomDeplacementCoroutine(5));
         }
     }
 
@@ -145,6 +143,24 @@ public class EnemyAI : MonoBehaviour
         result = Vector3.zero;
         return false;
     }
+
+
+    IEnumerator randomDeplacementCoroutine(int time)
+    {
+        //On calcul un nouveau point
+        Vector3 point;
+        if (RandomPoint(centrePoint.position, range, out point))
+        {
+            coroutineDebug = false;
+            Debug.Log("yes");
+            yield return new WaitForSeconds(time);
+            Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+            agent.SetDestination(point);
+        }
+        coroutineDebug = true;
+        yield break;
+    }
+
 
     public void Paralyze(BulletColor bulletColor, float duration)
     {
