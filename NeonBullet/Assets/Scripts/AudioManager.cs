@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioSource _death;
-    [SerializeField] private AudioSource _fakeShot;
-    [SerializeField] private AudioSource _gameOver;
+    private AudioSource _audioSource;
+    public AudioClip _death;
+    public AudioClip _fakeShot;
+    public AudioClip _gameOver;
     [SerializeField] private AudioSource _heartBeatHurt1;
     [SerializeField] private AudioSource _heartBeatHurt2;
-    [SerializeField] private AudioSource _lanceGrenade;
-    [SerializeField] private AudioSource _touched;
-    [SerializeField] private AudioSource _victory;
+    public AudioClip _lanceGrenade;
+    public AudioClip _touched;
+    public AudioClip _victory;
+    public AudioClip _blessure;
+    public AudioClip _recharge;
 
     void Start()
     {
-        
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,17 +28,19 @@ public class AudioManager : MonoBehaviour
 
     public void PlayDeath()
     {
-        _death.Play();
+        _audioSource.PlayOneShot(_death);
     }
 
     public void PlayFakeShot()
     {
-        _fakeShot.Play();
+        _audioSource.PlayOneShot(_fakeShot);
     }
 
     public void PlayGameOver()
     {
-        _gameOver.Play();
+        _heartBeatHurt1.Stop();
+        _heartBeatHurt2.Stop();
+        _audioSource.PlayOneShot(_gameOver);
     }
 
     public void PlayHeartBeatHurt1()
@@ -52,16 +57,26 @@ public class AudioManager : MonoBehaviour
 
     public void PlayLanceGrenade()
     {
-        _lanceGrenade.Play();
+        _audioSource.PlayOneShot(_lanceGrenade);
     }
 
     public void PlayTouched()
     {
-        _touched.Play();
+        _audioSource.PlayOneShot(_touched);
     }
 
     public void PlayVictory()
     {
-        _victory.Play();
+        _audioSource.PlayOneShot(_victory);
+    }
+
+    public void PlayBlessure()
+    {
+        _audioSource.PlayOneShot(_blessure);
+    }
+
+    public void PlayRecharge()
+    {
+        _audioSource.PlayOneShot(_recharge);
     }
 }

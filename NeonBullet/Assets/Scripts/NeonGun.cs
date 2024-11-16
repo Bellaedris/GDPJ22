@@ -16,6 +16,9 @@ public enum BulletColor
 
 public class NeonGun : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioManager _audioManager;
+
     [Header("Gun settings")] 
     [Tooltip("When hitting an enemy, they will be paralyzed for said seconds")]
     public float gunParalyzeTime = 5f;  //Paralyse the enemies for 5 seconds
@@ -88,6 +91,8 @@ public class NeonGun : MonoBehaviour
 
     private void Shoot()
     {
+        _audioManager.PlayLanceGrenade();
+
         if (_isBarrelRolling || _isInspectingBarrel)
             return;
 

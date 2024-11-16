@@ -45,14 +45,17 @@ public class PlayerController : MonoBehaviour
         HUD.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
         if (lives == 2)
         {
+            _audioManager.PlayHeartBeatHurt1();
             HUD.GetComponent<Image>().sprite = damagedHUD[0];
         }
         else if (lives == 1)
         {
+            _audioManager.PlayHeartBeatHurt2();
             HUD.GetComponent<Image>().sprite = damagedHUD[1];
         }
         else if (lives <= 0)
         {
+            _audioManager.PlayGameOver();
             HUD.GetComponent<Image>().sprite = damagedHUD[2];
         }
     }
