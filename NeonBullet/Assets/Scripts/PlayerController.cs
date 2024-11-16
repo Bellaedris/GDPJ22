@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioManager _audioManager;
 
     public int lives = 3;
     public GameObject HUD;
