@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
+    public AudioManager _audioManager;
+
     public BulletColor color;
     
     public GameObject player;       //Mettre le GameObject du joueur ici
@@ -165,9 +167,14 @@ public class EnemyAI : MonoBehaviour
         if (bulletColor == color)
         {
             Debug.Log("Match");
+            _audioManager.PlayTouched();
             StartCoroutine(StopMovementTimer(duration));
         }
-        // else
+        else
+        {
+            _audioManager.PlayTouched();
+            player.GetComponent<PlayerController>().Hit(1);
+        }
         // die??? + gameOver
     }
 
