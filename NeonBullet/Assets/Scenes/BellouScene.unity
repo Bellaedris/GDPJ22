@@ -1128,7 +1128,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3dc6af28742bf094d9d26aee01835cbd, type: 2}
   - {fileID: 2100000, guid: a6678f47dac79a1488dc1875908c1d80, type: 2}
   - {fileID: 2100000, guid: 3e50bee81f68709449c0e67a78bf9cd1, type: 2}
-  - {fileID: 2100000, guid: a31ca1c64e3cfc7429f76363834c2a6f, type: 2}
+  - {fileID: 2100000, guid: 304dea3ec7dfccf499e26550311c1944, type: 2}
   blackProbability: 1
   reloadUI: {fileID: 1461075852}
   _barrel: 040000000400000004000000040000000400000004000000
@@ -1283,7 +1283,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3e50bee81f68709449c0e67a78bf9cd1, type: 2}
+  - {fileID: -876546973899608171, guid: a7f4b261e2dec154fb9816ce0ec66fac, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

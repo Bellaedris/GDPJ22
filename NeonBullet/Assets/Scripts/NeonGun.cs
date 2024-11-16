@@ -31,6 +31,7 @@ public class NeonGun : MonoBehaviour
     private float _rotationOffset;
 
     private bool _isBarrelRolling = false;
+    private bool _canReload = true;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +43,7 @@ public class NeonGun : MonoBehaviour
         _numberOfBlack = 0;
         _rotationOffset = 360f / (float)barrelSize;
         reloadUI.SetActive(false);
+        _currentBarrel = 0;
         
         Reload();
     }
@@ -80,13 +82,15 @@ public class NeonGun : MonoBehaviour
         if (_bulletLeft == 0)
         {
             reloadUI.SetActive(true);
-            Debug.Log("RELOAD NECESSARY");
-            //Reload();
+            _canReload = true;
         }
     }
 
     private void Reload()
     {
+        if (!_canReload)
+            return;
+        
         if (Random.value < blackProbability)
             _numberOfBlack++;
         
@@ -133,9 +137,10 @@ public class NeonGun : MonoBehaviour
             }
         }
 
-        _currentBarrel = 0;
         _bulletLeft = barrelSize - _numberOfBlack;
         reloadUI.SetActive(false);
+        BarrelRoll(-_currentBarrel);
+        _canReload = false;
     }
 
     /// <summary>
@@ -148,8 +153,8 @@ public class NeonGun : MonoBehaviour
             return;
         
         _currentBarrel = direction < 0 
-            ? (_currentBarrel - 1 + barrelSize) % barrelSize 
-            : (_currentBarrel + 1) % barrelSize;
+            ? (_currentBarrel + direction + barrelSize) % barrelSize 
+            : (_currentBarrel + direction) % barrelSize;
 
         StartCoroutine(SmoothRotate(Vector3.up, -direction * _rotationOffset, 0.5f));
     }
