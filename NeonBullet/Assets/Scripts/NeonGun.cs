@@ -38,10 +38,14 @@ public class NeonGun : MonoBehaviour
 
     private bool _isBarrelRolling = false;
     private bool _canReload = true;
+
+    private PlayerController _player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerController>();
+        
         _bullets = new MeshRenderer[barrelSize];
         for(int i = 0; i < transform.childCount; i++)
             _bullets[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
@@ -71,6 +75,11 @@ public class NeonGun : MonoBehaviour
     {
         if (_isBarrelRolling)
             return;
+
+        if (_barrel[_currentBarrel] == BulletColor.Black)
+        {
+            _player.Hit();
+        }
         
         if (_barrel[_currentBarrel] == BulletColor.Empty)
         {
@@ -79,9 +88,13 @@ public class NeonGun : MonoBehaviour
         }
         //shoots the thing
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.forward, out hit, enemiesLayer))
+        Debug.DrawRay(transform.position, transform.position + _player.transform.forward * 1000f, Color.red, 10f);
+        if (Physics.Raycast(transform.position, _player.transform.forward, out hit, enemiesLayer))
+        {
             hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
-        
+            Debug.Log("HIT");
+        }
+
         //empty the barrel slot
         _barrel[_currentBarrel] = BulletColor.Empty;
         _bullets[_currentBarrel].material = bulletMaterials[(int)BulletColor.Empty];
