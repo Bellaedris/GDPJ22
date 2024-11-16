@@ -62,12 +62,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36fa8191d3d27cb45b85586533c0a383, type: 3}
       propertyPath: m_Name
-      value: EnemyCyan
+      value: EnemyGreen
       objectReference: {fileID: 0}
     - target: {fileID: 5620902180649975604, guid: 36fa8191d3d27cb45b85586533c0a383, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: b68ef489f5c90414dae851a33da2eb3d, type: 2}
+      objectReference: {fileID: 2100000, guid: 859cdb36558a62c4e85e86edc073de5d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,11 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0b1e1bd4a4d604a96b067ef59ad9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 3
+  color: 1
   player: {fileID: 0}
-  range: 5
+  range: 20
   centrePoint: {fileID: 6228730107727505126}
-  enemyDeplacement: 1
+  enemyDeplacement: 2
 --- !u!195 &-2431037732983973295
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ Animator:
   m_GameObject: {fileID: 6718022250769988700}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 488ab06e7ce80a14fadca35ba6a9c892, type: 2}
+  m_Controller: {fileID: 9100000, guid: 59388ef1908e71b40bb6897c86cc171a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
