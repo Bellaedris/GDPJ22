@@ -173,7 +173,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             _audioManager.PlayTouched();
-            player.GetComponent<PlayerController>().Hit(1);
+            player.GetComponent<PlayerController>().Hit();
         }
         // die??? + gameOver
     }

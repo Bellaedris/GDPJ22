@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     //Change le hud affichage des degats apres la prise d'un coup
     private void DisplayDamageUI()
     {
+        _audioManager.PlayBlessure();
         HUD.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
         if (lives == 2)
         {
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (lives <= 0)
         {
-            _audioManager.PlayGameOver();
+            _audioManager.PlayDeath();
             HUD.GetComponent<Image>().sprite = damagedHUD[2];
         }
     }

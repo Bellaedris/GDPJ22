@@ -91,10 +91,10 @@ public class NeonGun : MonoBehaviour
 
     private void Shoot()
     {
-        _audioManager.PlayLanceGrenade();
-
         if (_isBarrelRolling || _isInspectingBarrel)
             return;
+
+        _audioManager.PlayLanceGrenade();
 
         if (_barrel[_currentBarrel] == BulletColor.Black)
         {
@@ -103,6 +103,7 @@ public class NeonGun : MonoBehaviour
         
         if (_barrel[_currentBarrel] == BulletColor.Empty)
         {
+            _audioManager.PlayFakeShot();
             Debug.Log("CLIC! Empty barrel");
             return;
         }
@@ -134,7 +135,8 @@ public class NeonGun : MonoBehaviour
     {
         if (!_canReload)
             return;
-        
+
+        _audioManager.PlayRecharge();
         if (Random.value < blackProbability)
             _numberOfBlack++;
         
