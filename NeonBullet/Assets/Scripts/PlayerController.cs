@@ -12,25 +12,28 @@ public class PlayerController : MonoBehaviour
     public Sprite[] damagedHUD;
     private bool isInvulnerable = false;
 
+    //Fonction principale gerant la prise de degat
     public void Hit()
     {
+        StartCoroutine(IsEnumeratorSwitchState());
         lives--;
+        DisplayDamageUI();
         // if(lives <= 0)
         // {
         //     GameManager.Instance.GameOver();
         // }
     }
 
+    //Declenche la prise de degat par collision
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !isInvulnerable)
         {
-            StartCoroutine(IsEnumeratorSwitchState());
             Hit();
-            DisplayDamageUI();
         }
     }
 
+    //Change le hud affichage des degats apres la prise d'un coup
     private void DisplayDamageUI()
     {
         if (lives == 2)
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Assure l'immortalité temporaire du joueur apres un coup
     private IEnumerator IsEnumeratorSwitchState()
     {
         isInvulnerable = true;

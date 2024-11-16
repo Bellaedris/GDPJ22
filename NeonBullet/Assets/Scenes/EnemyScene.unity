@@ -674,6 +674,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
+--- !u!1 &1233392324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8947919202615679142, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+  m_PrefabInstance: {fileID: 1305809508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1305809508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,6 +735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6571505620096705554, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1233392324}
     - target: {fileID: 9220642817157254421, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
       propertyPath: HUD
       value: 
