@@ -15,18 +15,24 @@ public enum BulletColor
 
 public class NeonGun : MonoBehaviour
 {
+    [Header("Gun settings")] 
+    [Tooltip("When hitting an enemy, they will be paralyzed for said seconds")]
+    public float gunParalyzeTime = 1f;
+
+    public LayerMask enemiesLayer;
+    
+    [Header("Barrel settings")]
     public int barrelSize;
     public Material[] bulletMaterials;
     [Range(0, 1)] 
     public float blackProbability = 1f;
     public GameObject reloadUI;
     
-    public BulletColor[] _barrel;
-    
+    private BulletColor[] _barrel;
     private MeshRenderer[] _bullets;
     
     private int _numberOfBlack;
-    public int _currentBarrel;
+    private int _currentBarrel;
     private int _bulletLeft;
     private float _rotationOffset;
 
@@ -72,6 +78,9 @@ public class NeonGun : MonoBehaviour
             return;
         }
         //shoots the thing
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, enemiesLayer))
+            hit.collider.gameObject.GetComponent<EnemyAI>().Paralyze(_barrel[_currentBarrel], gunParalyzeTime);
         
         //empty the barrel slot
         _barrel[_currentBarrel] = BulletColor.Empty;
