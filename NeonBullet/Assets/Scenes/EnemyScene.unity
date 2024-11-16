@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &153374346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7212575495985064940, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+  m_PrefabInstance: {fileID: 1305809508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &197773845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -635,19 +640,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.35833254
+      value: 0.10452845
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.93359405
+      value: -0.9945219
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -655,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -138.004
+      value: -168
       objectReference: {fileID: 0}
     - target: {fileID: 2968949837393913836, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -739,6 +744,10 @@ PrefabInstance:
       propertyPath: hand
       value: 
       objectReference: {fileID: 1233392324}
+    - target: {fileID: 6571505620096705554, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 153374346}
     - target: {fileID: 9220642817157254421, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
       propertyPath: HUD
       value: 
@@ -759,7 +768,8 @@ PrefabInstance:
       propertyPath: 'damagedHUD.Array.data[2]'
       value: 
       objectReference: {fileID: 21300000, guid: 71092c1ecf00f0c468b8dacfef0921fa, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9193731037476758051, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
