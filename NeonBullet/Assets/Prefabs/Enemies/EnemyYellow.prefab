@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyYellow
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5620902180649975604, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -81,6 +85,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5206121427286909456}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3965298162011109521}
   m_SourcePrefab: {fileID: 100100000, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
 --- !u!1 &2483740181075672406 stripped
 GameObject:
@@ -148,6 +155,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-3965298162011109521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2483740181075672406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2968949837393913836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0cbbe6ca0e483d9459c1fe50aaf72064, type: 3}
