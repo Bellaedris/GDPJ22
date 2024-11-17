@@ -1053,6 +1053,7 @@ GameObject:
   - component: {fileID: 3755752168353239685}
   - component: {fileID: 9220642817157254421}
   - component: {fileID: 2024880370553097100}
+  - component: {fileID: 237921773488792126}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1245,6 +1246,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &237921773488792126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240486388166704788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 1
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8576521484721493472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,7 +2111,7 @@ MonoBehaviour:
   blackProbability: 1
   hand: {fileID: 8947919202615679142}
   reloadUI: {fileID: 3501581280503655794}
-  particlesOnHit: {fileID: 0}
+  particlesOnHit: {fileID: 4443210104264776332, guid: 352b1136e99c69b418e2ab1dcda49e98, type: 3}
 --- !u!95 &4864343111224246150
 Animator:
   serializedVersion: 7
