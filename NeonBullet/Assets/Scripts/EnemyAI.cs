@@ -9,14 +9,14 @@ public class EnemyAI : MonoBehaviour
     public AudioManager _audioManager;
 
     public BulletColor color;
-    
+
     public GameObject player;       //Mettre le GameObject du joueur ici
     public float range;             //Max deplacement distance
     public Transform centrePoint;   //Center of area where the enemy move in (or agent transform if don't care)
     public DeplacementBehavior enemyDeplacement;
     private Animator animator;
-    public enum DeplacementBehavior {RandomBehavior, ChasingBehavior, ZigZagBehavior, None}
-    
+    public enum DeplacementBehavior { RandomBehavior, ChasingBehavior, ZigZagBehavior, None }
+
     private NavMeshAgent agent;
     private List<Vector3> waypoints;
     private int currentWaypointIndex = 0;
@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour
 
     void zigZagDeplacement()
     {
-        if(waypoints.Count == 0)
+        if (waypoints.Count == 0)
         {
             zigZagProcess();
             return;
@@ -173,7 +173,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             _audioManager.PlayTouched();
-            player.GetComponent<PlayerController>().Hit();
+            player.GetComponent<PlayerController>().Hit(1);
         }
         // die??? + gameOver
     }
