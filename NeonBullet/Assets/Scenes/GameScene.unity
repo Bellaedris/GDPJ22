@@ -6840,8 +6840,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3178775695734610073, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1800681465}
   m_SourcePrefab: {fileID: 100100000, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+--- !u!1 &1800681461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8096880353229252153, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+  m_PrefabInstance: {fileID: 1800681460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800681462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1190098549076317571, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+  m_PrefabInstance: {fileID: 1800681460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800681463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8203698197220841439, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+  m_PrefabInstance: {fileID: 1800681460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1800681464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3178775695734610073, guid: b1f804f8ef0ca34458d2a59680c03c4c, type: 3}
+  m_PrefabInstance: {fileID: 1800681460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1800681465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800681464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7769b99bd2fa1904cbcba9710015f892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doors:
+  - {fileID: 1800681463}
+  - {fileID: 1800681462}
+  - {fileID: 1800681461}
+  enemies:
+  - {fileID: 6718022250769988700, guid: 4d62e6b3ab7a1444d87223670f938c4c, type: 3}
+  - {fileID: 2483740181075672406, guid: 4fa7c3d78b0f3dd4c9fa169702a74504, type: 3}
+  - {fileID: 6718022250769988700, guid: 184257d25312e524f9ec595a01f0b14a, type: 3}
+  audioManager: {fileID: 1411581901}
+  player: {fileID: 2038178268}
 --- !u!4 &1833423715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2968949837393913836, guid: fa4584096e5789244a654bdb5a392d3d, type: 3}
