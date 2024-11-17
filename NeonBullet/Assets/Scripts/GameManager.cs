@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private bool _switchToDead = false;
     private bool _canSwitchScene = false;
 
+    private bool _isVictory = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        _isVictory = true;
         LaunchDeadScene();
         _audioSource.Pause();
         _audioManager.PlayVictory();
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        _isVictory = false;
         LaunchDeadScene();
         _audioSource.Pause();
         _audioManager.PlayGameOver();
@@ -92,5 +96,10 @@ public class GameManager : MonoBehaviour
         _canSwitchScene = false;
         yield return new WaitForSeconds(0.3f);
         _canSwitchScene = true;
+    }
+
+    public bool isVictory()
+    {
+        return _isVictory;
     }
 }

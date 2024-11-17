@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
         gm.transform.position = doors[randomDoor].transform.position;
         gm.GetComponent<EnemyAI>().player = player;
         gm.GetComponent<EnemyAI>()._audioManager = audioManager;
+        //gm.GetComponent<EnemyAI>().enemyDeplacement = gm.GetComponent<EnemyAI>().DeplacementBehavior.ChasingBehavior;
 
     }
 }
