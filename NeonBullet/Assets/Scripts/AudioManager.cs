@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip _blessure;
     public AudioClip _recharge;
 
-    void Start()
+    void Awake()
     {
         _audioSource = gameObject.GetComponent<AudioSource>();
     }
