@@ -28,6 +28,8 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         waypoints = new List<Vector3>();
         agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player");
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()

@@ -4,6 +4,7 @@ public class TextManager : MonoBehaviour
 {
     [SerializeField] GameObject _gameOver;
     [SerializeField] GameObject _victory;
+    [SerializeField] GameObject _playerACacher;
 
     private GameManager _gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,11 +21,13 @@ public class TextManager : MonoBehaviour
             {
                 _victory.SetActive(true);
                 _gameOver.SetActive(false);
+                _playerACacher.SetActive(false);
             }
             else
             {
                 _victory.SetActive(false);
                 _gameOver.SetActive(true);
+                _playerACacher.SetActive(true);
             }
     }
 }

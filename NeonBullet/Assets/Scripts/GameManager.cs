@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
 
     public void LaunchGameScene()
     {
-        _audioSource.Play();
+        if(!_audioSource.isPlaying)
+            _audioSource.Play();
         _switchToGame = true;
         _audioManager.GetComponent<AudioSource>().Stop();
         StartCoroutine(WaitToSwitch());
@@ -69,7 +70,8 @@ public class GameManager : MonoBehaviour
 
     public void LaunchMenuScene()
     {
-        _audioSource.Play();
+        if(!_audioSource.isPlaying)
+            _audioSource.Play();
         _switchToMenu = true;
         _audioManager.GetComponent<AudioSource>().Stop();
         StartCoroutine(WaitToSwitch());
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         _isVictory = true;
         LaunchDeadScene();
-        _audioSource.Pause();
+        _audioSource.Stop();
         _audioManager.PlayVictory();
     }
 
@@ -87,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         _isVictory = false;
         LaunchDeadScene();
-        _audioSource.Pause();
+        _audioSource.Stop();
         _audioManager.PlayGameOver();
     }
 
