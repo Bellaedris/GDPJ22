@@ -94,8 +94,6 @@ public class NeonGun : MonoBehaviour
         if (_isBarrelRolling || _isInspectingBarrel)
             return;
 
-        _audioManager.PlayLanceGrenade();
-
         if (_barrel[_currentBarrel] == BulletColor.Black)
         {
             _player.Hit(3);
@@ -107,6 +105,9 @@ public class NeonGun : MonoBehaviour
             Debug.Log("CLIC! Empty barrel");
             return;
         }
+
+        _audioManager.PlayLanceGrenade();
+
         //shoots the thing
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.position + cameraDirection.transform.forward * 1000f, Color.red, 10f);
