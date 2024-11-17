@@ -75,9 +75,9 @@ public class NeonGun : MonoBehaviour
             Shoot();
         if (Input.GetKeyDown(KeyCode.R))
             Reload();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.mouseScrollDelta.y > 0)
             BarrelRoll(-1);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.mouseScrollDelta.y < 0)
             BarrelRoll(1);
         if (Input.GetKeyDown(KeyCode.F))
             Inspectbarrel();
