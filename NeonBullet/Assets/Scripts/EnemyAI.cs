@@ -145,7 +145,6 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-
     IEnumerator randomDeplacementCoroutine(int time)
     {
         //On calcul un nouveau point
@@ -161,12 +160,10 @@ public class EnemyAI : MonoBehaviour
         yield break;
     }
 
-
     public void Paralyze(BulletColor bulletColor, float duration)
     {
         if (bulletColor == color)
         {
-            Debug.Log("Match");
             _audioManager.PlayTouched();
             StartCoroutine(StopMovementTimer(duration));
         }
@@ -193,5 +190,19 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(timer);
         gameObject.GetComponent<BoxCollider>().enabled = true;
         _canMove = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            if (enemyDeplacement == DeplacementBehavior.ChasingBehavior)
+            {
+                Debug.Log("Je recalcul ma position");
+                StopCoroutine(randomDeplacementCoroutine(5));
+                coroutineDebug = true;
+                StartCoroutine(randomDeplacementCoroutine(5));
+            }
+        }
     }
 }
