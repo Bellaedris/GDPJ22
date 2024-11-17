@@ -7,7 +7,7 @@ public class DanceFloorManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("changeColors", 0f, 1.5f);
+        InvokeRepeating("changeColors", 0f, 0.4614674f);
         _tiles = GetComponentsInChildren<MeshRenderer>();
     }
 
