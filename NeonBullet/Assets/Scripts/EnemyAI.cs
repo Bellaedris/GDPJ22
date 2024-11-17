@@ -187,9 +187,11 @@ public class EnemyAI : MonoBehaviour
     {
         _canMove = false;
         waypoints.Clear();
+        gameObject.GetComponent<BoxCollider>().enabled = false;
         agent.SetDestination(agent.transform.position);
         agent.velocity = Vector3.zero;
         yield return new WaitForSeconds(timer);
+        gameObject.GetComponent<BoxCollider>().enabled = true;
         _canMove = true;
     }
 }
