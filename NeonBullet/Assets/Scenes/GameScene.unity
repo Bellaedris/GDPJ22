@@ -8112,7 +8112,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: e74e8b97e2f776e429fdcab1996b37fd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 819f9f10bd574ec3a77603b276dc20c9, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 819f9f10bd574ec3a77603b276dc20c9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -13542,6 +13542,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6571505620096705554, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+      propertyPath: enemiesLayer.m_Bits
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571505620096705554, guid: 3831070b6db0f4b4a877cad3cf9ef591, type: 3}
+      propertyPath: 'bulletMaterials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eb9385d98f3a7e541bb6b2b8c37c5a90, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
